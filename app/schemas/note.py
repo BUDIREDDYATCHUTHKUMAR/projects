@@ -2,7 +2,7 @@ from pydantic import BaseModel, Field
 
 class Note_create(BaseModel):
     # Enforces positive IDs greater than zero
-    id: int = Field(..., gt=0, description="The unique ID of the note", example=1)
+    
     
     # Enforces a minimum length of 1 character and maximum of 100 characters
     title: str = Field(..., min_length=1, max_length=100, description="The title of the note", example="Shopping List")
