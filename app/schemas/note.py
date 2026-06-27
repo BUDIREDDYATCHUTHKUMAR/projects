@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field,EmailStr
 
 class Note_create(BaseModel):
     # Enforces positive IDs greater than zero
@@ -14,3 +14,26 @@ class Note_update(BaseModel):
     # Same validation applied to updates to ensure consistency
     title: str = Field(..., min_length=1, max_length=100, example="Updated Shopping List")
     content: str = Field(..., min_length=1, max_length=2000, example="Buy milk and eggs only.")
+class NoteResponse(BaseModel):
+    id:int
+    title:str
+    content:str
+    user_id:int
+    
+    model_config={
+        "from_attributes":True
+    }
+class user_create(BaseModel):
+    username:str
+    email:EmailStr
+    password:str
+class userResponse(BaseModel):
+    id:int
+    username:str
+    email:EmailStr
+    model_config={
+        "from_attributes":True
+    }
+class Token(BaseModel):
+    access_token:str
+    token_type:str
